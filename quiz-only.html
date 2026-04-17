@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Truque da Gelatina Bariatrica - Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* =====================================================
+   TRUQUE DA GELATINA BARIATRICA — QUIZ
+   Design System BetterMe — Pixel Perfect
+   ===================================================== */
+
+:root {
+  --primary: #3B2A24;
+  --bg: #F5F1EC;
+  --card: #FFFFFF;
+  --muted: #EAE3DC;
+  --text: #2B2B2B;
+  --subtext: #6B5B53;
+  --success-bg: #DCEAD7;
+  --success: #5A8A3C;
+  --accent: #3B2A24;
+  --line: #E8E0D8;
+  --white: #FFFFFF;
+  --red: #D94F4F;
+  --amber: #E9A43F;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+}
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+input { font-family: inherit; }
+
+/* ---------- header ---------- */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  display: grid;
+  grid-template-columns: 40px 1fr 60px;
+  align-items: center;
+  padding: 10px 16px 12px;
+  max-width: 520px;
+  margin: 0 auto;
+  gap: 12px;
+}
+.back-btn {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--text);
+  transition: all 0.2s var(--ease);
+  flex-shrink: 0;
+  grid-column: 1;
+}
+.back-btn svg { width: 20px; height: 20px; }
+.back-btn:hover { background: var(--muted); }
+.back-btn:active { transform: scale(0.92); }
+.back-btn[hidden] { visibility: hidden; }
+
+.brand {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand-avatar-wrap {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 3px solid var(--bg);
+}
+.header-section {
+  grid-column: 3;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--subtext);
+  text-align: right;
+}
+
+/* ---------- progress bar ---------- */
+.progress-wrap {
+  padding: 0 16px 12px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.progress-track {
+  height: 4px;
+  width: 100%;
+  background: rgba(59, 42, 36, 0.08);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--primary);
+  border-radius: var(--r-pill);
+  transition: width 0.6s var(--ease-out);
+}
+
+/* ---------- main / screen ---------- */
+.app-main {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+  position: relative;
+}
+.screen {
+  display: none;
+  opacity: 0;
+  transform: translateY(14px);
+}
+.screen.active {
+  display: block;
+  animation: screenIn 0.4s var(--ease-out) forwards;
+}
+@keyframes screenIn {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.screen-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+}
+.center-content { align-items: center; text-align: center; }
+
+/* ---------- question screens ---------- */
+.q-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+.q-justification {
+  font-size: 14px;
+  color: var(--subtext);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ---------- option rows (BetterMe style) ---------- */
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.option-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  transition: all 0.2s var(--ease);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+.option-row:hover {
+  border-color: var(--primary);
+  background: #FAF7F4;
+}
+.option-row:active {
+  transform: scale(0.985);
+}
+.option-row.is-selected {
+  border-color: var(--primary);
+  background: #FAF7F4;
+}
+.option-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+  flex: 1;
+}
+.option-sub {
+  font-size: 12px;
+  color: var(--subtext);
+  font-weight: 400;
+  margin-top: 2px;
+}
+.option-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  flex-shrink: 0;
+  margin-left: 12px;
+  transition: all 0.2s var(--ease);
+  position: relative;
+}
+.option-row:hover .option-check,
+.option-row.is-selected .option-check {
+  border-color: var(--primary);
+}
+.option-row.is-selected .option-check::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+/* ---------- multi select ---------- */
+.option-row.multi-selected {
+  border-color: var(--primary);
+  background: #FAF7F4;
+}
+.option-row.multi-selected .option-check {
+  border-color: var(--primary);
+}
+.option-row.multi-selected .option-check::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+/* ---------- age grid / body grid ---------- */
+.age-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+.age-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease);
+}
+.age-card:hover { transform: scale(1.03); }
+.age-card:active { transform: scale(0.97); }
+.age-img-wrap {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--muted);
+}
+.age-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.age-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  padding: 4px 14px;
+  background: rgba(59, 42, 36, 0.06);
+  border-radius: var(--r-pill);
+}
+.body-emoji-wrap {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: var(--r-lg);
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s var(--ease);
+}
+.age-card:hover .body-emoji-wrap {
+  border-color: var(--primary);
+  background: #FAF7F4;
+}
+.body-emoji {
+  font-size: 48px;
+  line-height: 1;
+}
+
+/* ---------- CTA button ---------- */
+.cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--primary);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: var(--r-pill);
+  transition: all 0.25s var(--ease);
+  letter-spacing: 0.01em;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+}
+.cta-btn:hover { background: #2a1d18; transform: translateY(-1px); }
+.cta-btn:active { transform: scale(0.98); }
+.cta-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+.cta-btn:disabled:hover { background: var(--primary); transform: none; }
+.cta-main {
+  font-size: 16px;
+  padding: 18px 28px;
+  background: var(--primary);
+  box-shadow: 0 4px 16px rgba(59, 42, 36, 0.25);
+}
+.cta-main:hover { box-shadow: 0 6px 24px rgba(59, 42, 36, 0.35); }
+
+.cta-green {
+  background: #22C55E;
+  font-size: 17px;
+  padding: 20px 28px;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
+  animation: ctaPulse 2s ease-in-out infinite;
+  text-decoration: none;
+}
+.cta-green:hover { background: #16A34A; box-shadow: 0 6px 28px rgba(34, 197, 94, 0.45); }
+@keyframes ctaPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* ---------- break headline ---------- */
+.break-headline {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--text);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+.break-headline em {
+  color: var(--primary);
+  font-style: italic;
+}
+
+/* ---------- break intro text ---------- */
+.break-intro-text {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ---------- break testimonial with image ---------- */
+.break-testimonial-visual {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  width: 100%;
+}
+.break-testimonial-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+.break-testimonial-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.break-testimonial-content {
+  padding: 18px;
+}
+.break-testimonial-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+/* ---------- testimonial ---------- */
+.testimonial-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.testimonial-location {
+  font-size: 12px;
+  color: var(--subtext);
+}
+.testimonial-stars {
+  font-size: 12px;
+  color: #E9A43F;
+  letter-spacing: 2px;
+}
+.testimonial-text {
+  font-size: 14px;
+  color: var(--subtext);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ---------- mechanism cards ---------- */
+.mechanism-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+.mechanism-card {
+  border-radius: var(--r-md);
+  padding: 14px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.mechanism-card h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+.mechanism-card p {
+  font-size: 11px;
+  color: var(--subtext);
+  line-height: 1.4;
+}
+.mechanism-icon { font-size: 28px; }
+.mechanism-gas { background: #F0FFF4; border: 1px solid rgba(79, 217, 114, 0.15); }
+.mechanism-liquid { background: #FEF6E8; border: 1px solid rgba(233, 164, 63, 0.15); }
+.mechanism-inflammation { background: #FFF5F5; border: 1px solid rgba(217, 79, 79, 0.12); }
+
+.mechanism-image {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 20px rgba(59, 42, 36, 0.1);
+  width: 100%;
+}
+.mechanism-image img {
+  width: 100%;
+  display: block;
+}
+
+/* ---------- carousel ---------- */
+.carousel-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.35s var(--ease-out);
+}
+.carousel-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--r-lg);
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.2s var(--ease);
+}
+.carousel-btn:hover { background: var(--white); }
+.carousel-prev { left: 8px; }
+.carousel-next { right: 8px; }
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(59, 42, 36, 0.15);
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+.carousel-dot.active { background: var(--primary); }
+
+/* ---------- slider input ---------- */
+.slider-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  width: 100%;
+}
+.slider-value {
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.slider-unit {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--subtext);
+}
+.slider-input {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: rgba(59, 42, 36, 0.1);
+  border-radius: var(--r-pill);
+  outline: none;
+}
+.slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(59, 42, 36, 0.3);
+}
+.slider-input::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(59, 42, 36, 0.3);
+}
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 12px;
+  color: var(--subtext);
+  font-weight: 500;
+}
+.slider-hint {
+  font-size: 14px;
+  color: var(--primary);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---------- text input ---------- */
+.text-input-wrap {
+  position: relative;
+  width: 100%;
+}
+.text-input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+.text-input {
+  width: 100%;
+  padding: 16px 18px 16px 48px;
+  font-size: 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--white);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s var(--ease);
+}
+.text-input:focus { border-color: var(--primary); }
+.text-input::placeholder { color: #B5A99E; }
+.input-error {
+  font-size: 13px;
+  color: var(--red);
+  text-align: center;
+  min-height: 20px;
+}
+.input-secure {
+  font-size: 12px;
+  color: var(--subtext);
+  text-align: center;
+}
+
+/* ---------- transition text ---------- */
+.transition-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--success);
+  text-align: center;
+  padding: 20px 0;
+  animation: screenIn 0.4s var(--ease-out) forwards;
+}
+
+/* ---------- loading screen ---------- */
+.loading-screen {
+  padding: 48px 0;
+}
+.loading-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  font-style: italic;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.loading-sub {
+  font-size: 14px;
+  color: var(--subtext);
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.loading-steps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.loading-step {
+  width: 100%;
+}
+.loading-step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.loading-step-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.loading-step-pct {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.loading-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(59, 42, 36, 0.08);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.loading-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--primary);
+  border-radius: var(--r-pill);
+  transition: width 0.1s linear;
+}
+.loading-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--subtext);
+  margin-top: 24px;
+}
+.loading-badge-icon { font-size: 18px; }
+
+/* ---------- pressel screen ---------- */
+.pressel-screen {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg);
+}
+.pressel-screen.active {
+  display: flex;
+  animation: screenIn 0.4s var(--ease-out) forwards;
+}
+.pressel-inner {
+  width: 100%;
+  max-width: 520px;
+  padding: 20px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.pressel-headline {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+.pressel-headline strong { color: var(--red); }
+.pressel-video-wrap {
+  width: 100%;
+  max-width: 400px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #000;
+}
+.pressel-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 18px 24px;
+  background: var(--primary);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: var(--r-pill);
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.5s var(--ease-out);
+}
+.pressel-cta.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  animation: ctaPulse 2s ease infinite;
+}
+@keyframes ctaPulse {
+  0%,100% { transform: scale(1); box-shadow: 0 4px 16px rgba(59,42,36,0.25); }
+  50% { transform: scale(1.02); box-shadow: 0 6px 24px rgba(59,42,36,0.4); }
+}
+.pressel-cta:hover { background: #2a1d18; }
+.pressel-disclaimer {
+  font-size: 11px;
+  color: var(--subtext);
+  opacity: 0.7;
+  text-align: center;
+}
+
+/* ---------- result screen ---------- */
+.result-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+.result-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+/* IMC bar */
+.imc-value {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--primary);
+  text-align: center;
+  letter-spacing: -0.03em;
+}
+.imc-label {
+  font-size: 14px;
+  color: var(--subtext);
+  text-align: center;
+  font-weight: 500;
+}
+.imc-bar-wrap {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, #22C55E 0%, #22C55E 25%, #EAB308 25%, #EAB308 50%, #F97316 50%, #F97316 75%, #EF4444 75%, #EF4444 100%);
+  margin: 8px 0;
+  overflow: visible;
+}
+.imc-pointer {
+  position: absolute;
+  top: -8px;
+  width: 3px;
+  height: 40px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: left 0.6s var(--ease-out);
+}
+.imc-pointer::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--text);
+  border-radius: 50%;
+}
+.imc-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--subtext);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* alert card */
+.alert-card {
+  background: #FFF5F5;
+  border: 1px solid rgba(217, 79, 79, 0.15);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+}
+.alert-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+.alert-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.alert-x {
+  color: var(--red);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* diagnosis card */
+.diagnosis-card {
+  background: #FFFBEB;
+  border: 1px solid rgba(233, 164, 63, 0.2);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+}
+.diagnosis-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 8px;
+}
+.diagnosis-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* solution card */
+.solution-card {
+  background: var(--success-bg);
+  border: 1px solid rgba(90, 138, 60, 0.2);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+}
+.solution-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--success);
+  margin-bottom: 8px;
+}
+.solution-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* depoimento result */
+.depoimento-result {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  width: 100%;
+}
+.depoimento-result img {
+  width: 100%;
+  display: block;
+}
+.depoimento-result-body {
+  padding: 18px;
+  text-align: left;
+}
+
+/* CTA secure */
+.cta-secure {
+  font-size: 12px;
+  color: var(--subtext);
+  text-align: center;
+  margin-top: 6px;
+}
+
+/* ---------- social proof big number ---------- */
+.social-big-number {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--primary);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+.social-stars {
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+
+/* ---------- science cards (stacked) ---------- */
+.science-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.science-card {
+  border-radius: var(--r-md);
+  padding: 18px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.science-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.science-card p {
+  font-size: 13px;
+  color: var(--subtext);
+  line-height: 1.5;
+}
+.science-icon { font-size: 24px; }
+
+/* ---------- confirmation modal ---------- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.show { display: flex; }
+.modal-box {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+.modal-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.modal-btn-confirm {
+  padding: 14px;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: var(--r-pill);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+.modal-btn-cancel {
+  padding: 14px;
+  background: transparent;
+  color: var(--subtext);
+  border-radius: var(--r-pill);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  font-family: inherit;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 380px) {
+  .q-title { font-size: 20px; }
+  .loading-title { font-size: 24px; }
+  .mechanism-cards { grid-template-columns: 1fr; }
+  .break-headline { font-size: 20px; }
+}
+@media (max-width: 480px) {
+  .app-main { padding: 0 16px 80px; }
+  .header-inner { padding: 12px 16px; }
+  .progress-wrap { padding: 0 16px 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header" id="quizHeader">
+  <div class="header-inner">
+    <button class="back-btn" id="backBtn" hidden onclick="goBack()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <div class="brand">
+      <div class="brand-avatar-wrap">
+        <img src="assets/Roberto Fonseca.png" alt="Dr. Roberto Fonseca" class="brand-avatar">
+      </div>
+    </div>
+    <div class="header-section" id="headerSection">Seu perfil</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== PRESSEL ==================== -->
+<div class="pressel-screen" style="display:none;" id="presselScreen">
+  <div class="pressel-inner">
+    <h1 class="pressel-headline">Descubra o <strong>truque da gelatina bariatrica</strong> que esta fazendo mulheres perderem ate 15kg em 4 semanas</h1>
+    <div class="pressel-video-wrap">
+      <vturb-smartplayer id="vid-69e25e1e5a6a1b255846a405" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
+    </div>
+    <button class="pressel-cta" id="presselCta" onclick="startQuiz()">QUERO MINHA RECEITA PERSONALIZADA &#10140;</button>
+    <p class="pressel-disclaimer">Teste gratuito &middot; Resultado imediato &middot; Sem cadastro</p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="app-main" id="quizMain">
+
+  <!-- ==================== TELA 1 ==================== -->
+  <div class="screen" id="screen-1">
+    <div class="screen-inner center-content">
+      <h1 class="q-title">Quantos quilos voce<br><strong>deseja perder?</strong></h1>
+      <p class="q-justification">O Truque da Gelatina Bariatrica ajuda a eliminar gordura de forma acelerada</p>
+      <div class="option-list">
+        <button class="option-row" onclick="selectOption(this,1)"><span class="option-text">Ate 5 kg</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,1)"><span class="option-text">De 6 a 10 kg</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,1)"><span class="option-text">De 11 a 15 kg</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,1)"><span class="option-text">De 16 a 20 kg</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,1)"><span class="option-text">Mais de 20 kg</span><span class="option-check"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 2 ==================== -->
+  <div class="screen" id="screen-2">
+    <div class="screen-inner center-content">
+      <h1 class="q-title">Como voce classificaria<br><strong>seu corpo hoje?</strong></h1>
+      <div class="option-list">
+        <button class="option-row" onclick="selectOption(this,2)"><span class="option-text">Regular</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,2)"><span class="option-text">Flacido</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,2)"><span class="option-text">Sobrepeso</span><span class="option-check"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 3 ==================== -->
+  <div class="screen" id="screen-3">
+    <div class="screen-inner center-content">
+      <h1 class="q-title">Em qual area do seu corpo voce gostaria de<br><strong>reduzir mais gordura?</strong></h1>
+      <div class="option-list">
+        <button class="option-row" onclick="selectOption(this,3,'area_foco')"><span class="option-text">Regiao dos Culotes</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,3,'area_foco')"><span class="option-text">Regiao das Coxas</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,3,'area_foco')"><span class="option-text">Regiao do Abdomen (Barriga)</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,3,'area_foco')"><span class="option-text">Regiao dos Gluteos</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,3,'area_foco')"><span class="option-text">Regiao dos Bracos</span><span class="option-check"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 4 — PROVA SOCIAL ==================== -->
+  <div class="screen" id="screen-4">
+    <div class="screen-inner center-content">
+      <h1 class="break-headline">Voce nao esta sozinha!</h1>
+      <p class="break-intro-text">Mais de <strong>47.000 mulheres</strong> ja descobriram seu tipo metabolico com esse teste</p>
+
+      <div class="carousel-wrap" id="proofCarousel">
+        <div class="carousel-track" id="proofTrack">
+          <div class="carousel-slide"><img src="assets/prova-social5.jpg" alt="Prova social 1"></div>
+          <div class="carousel-slide"><img src="assets/prova-social6.jpg" alt="Prova social 2"></div>
+          <div class="carousel-slide"><img src="assets/prova-social7.jpg" alt="Prova social 3"></div>
+        </div>
+        <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">&#8249;</button>
+        <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">&#8250;</button>
+      </div>
+      <div class="carousel-dots" id="carouselDots">
+        <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+        <span class="carousel-dot" onclick="goToSlide(1)"></span>
+        <span class="carousel-dot" onclick="goToSlide(2)"></span>
+      </div>
+
+      <button class="cta-btn cta-main" onclick="goTo(5)">Continuar</button>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 5 — NOME ==================== -->
+  <div class="screen" id="screen-5">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><strong>Qual seu nome?</strong></h1>
+      <p class="q-justification">Para montar seu plano personalizado, precisamos do seu nome.</p>
+      <div class="text-input-wrap">
+        <span class="text-input-icon">&#128100;</span>
+        <input type="text" class="text-input" id="nameInput" placeholder="Digite seu nome aqui" autocapitalize="words" autocomplete="given-name">
+      </div>
+      <p class="input-error" id="nameError"></p>
+      <button class="cta-btn cta-main" onclick="submitName()">Continuar</button>
+      <p class="input-secure">&#128274; Fique tranquila, seus dados estao protegidos!</p>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 6 ==================== -->
+  <div class="screen" id="screen-6">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, como o seu peso<br><strong>impacta sua vida?</strong></h1>
+      <div class="option-list">
+        <button class="option-row" onclick="selectOption(this,6,'impacto_vida')"><span class="option-text">&#128247; Evito tirar fotos porque tenho vergonha</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,6,'impacto_vida')"><span class="option-text">&#128148; Meu parceiro nao me olha mais com desejo como antes</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,6,'impacto_vida')"><span class="option-text">&#128546; Evito encontros sociais porque nao me sinto bem comigo mesma</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,6,'impacto_vida')"><span class="option-text">&#128075; Nenhuma das opcoes</span><span class="option-check"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 7 ==================== -->
+  <div class="screen" id="screen-7">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, voce esta realmente<br><strong>feliz com sua aparencia?</strong></h1>
+      <div class="option-list">
+        <button class="option-row" onclick="selectOption(this,7)"><span class="option-text">&#128560; Nao, porque me sinto acima do peso</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,7)"><span class="option-text">&#128148; Sim, mas sei que posso melhorar minha saude</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,7)"><span class="option-text">&#128542; Nao, gostaria de perder peso para melhorar meu bem-estar</span><span class="option-check"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 8 ==================== -->
+  <div class="screen" id="screen-8">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, o que mais te<br><strong>impede de emagrecer?</strong></h1>
+      <div class="option-list" id="screen8options">
+        <button class="option-row" onclick="selectOption(this,8,'impedimento')">
+          <span class="option-text">&#9200; <strong>Falta de tempo</strong><br><span class="option-sub">Rotina agitada.</span></span>
+          <span class="option-check"></span>
+        </button>
+        <button class="option-row" onclick="selectOption(this,8,'impedimento')">
+          <span class="option-text">&#129300; <strong>Autocontrole</strong><br><span class="option-sub">Dificuldade em resistir a tentacoes alimentares.</span></span>
+          <span class="option-check"></span>
+        </button>
+        <button class="option-row" onclick="selectOption(this,8,'impedimento')">
+          <span class="option-text">&#128176; <strong>Financeiro</strong><br><span class="option-sub">Achar opcoes saudaveis mais caras do que alimentos processados.</span></span>
+          <span class="option-check"></span>
+        </button>
+      </div>
+      <div id="t8transition" style="display:none;">
+        <p class="transition-text">&#10024; Nosso protocolo resolve isso para voce!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 9 — MECANISMO ==================== -->
+  <div class="screen" id="screen-9">
+    <div class="screen-inner center-content">
+      <h1 class="break-headline">COMO FUNCIONA O<br><strong>TRUQUE DA GELATINA BARIATRICA?</strong></h1>
+
+      <div class="mechanism-cards">
+        <div class="mechanism-card mechanism-gas">
+          <span class="mechanism-icon">&#128994;</span>
+          <h4>Ativa GLP-1 e GIP</h4>
+          <p>Religa os mesmos hormonios que o Ozempic — de forma natural</p>
+        </div>
+        <div class="mechanism-card mechanism-liquid">
+          <span class="mechanism-icon">&#128293;</span>
+          <h4>Queima gordura dormindo</h4>
+          <p>Ingredientes agem 24h, acelerando metabolismo em repouso</p>
+        </div>
+        <div class="mechanism-card mechanism-inflammation">
+          <span class="mechanism-icon">&#128683;</span>
+          <h4>Sem dieta, sem academia</h4>
+          <p>Controla apetite e usa gordura como combustivel</p>
+        </div>
+      </div>
+
+      <div class="mechanism-image" style="aspect-ratio:4/3;overflow:hidden;border-radius:var(--r-lg);">
+        <img src="assets/etapa como funciona.png" alt="Como funciona o Truque da Gelatina" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+
+      <p class="break-intro-text">O Truque da Gelatina age ate enquanto voce dorme, <strong>queimando gordura de forma acelerada!</strong></p>
+
+      <button class="cta-btn cta-main" onclick="goTo(10)">Continuar</button>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 10 — BENEFICIOS (MULTI-SELECT) ==================== -->
+  <div class="screen" id="screen-10">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, <strong>quais desses beneficios</strong> voce gostaria de ter?</h1>
+      <p class="q-justification">Vamos personalizar a sua formula para maximizar os resultados.</p>
+      <p style="font-size:14px;font-weight:700;color:var(--primary);text-align:center;">&#11015;&#65039; SELECIONE E CLIQUE PARA CONTINUAR &#11015;&#65039;</p>
+      <div class="option-list" id="multiSelectList">
+        <button class="option-row" onclick="toggleMulti(this)"><span class="option-text">Emagrecer sem esforco e sem efeito sanfona</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="toggleMulti(this)"><span class="option-text">Sono mais profundo</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="toggleMulti(this)"><span class="option-text">Mais energia e disposicao ao longo do dia</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="toggleMulti(this)"><span class="option-text">Aumento da autoestima e confianca</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="toggleMulti(this)"><span class="option-text">Reducao do estresse e ansiedade</span><span class="option-check"></span></button>
+      </div>
+      <button class="cta-btn cta-main" id="multiContinueBtn" disabled onclick="goTo(11)">Continuar</button>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 11 — DEPOIMENTO ==================== -->
+  <div class="screen" id="screen-11">
+    <div class="screen-inner center-content">
+      <h1 class="break-headline"><strong>Historias reais de transformacao!</strong></h1>
+      <p class="q-justification">&#127801; <strong>Depoimento:</strong> Sabrina — Porto Alegre, RS</p>
+
+      <div class="break-testimonial-visual">
+        <div class="break-testimonial-img">
+          <img src="assets/fernanda.jpg" alt="Sabrina Oliveira">
+        </div>
+        <div class="break-testimonial-content">
+          <div class="break-testimonial-header">
+            <span class="testimonial-name">Sabrina Oliveira</span>
+            <span class="testimonial-location">Porto Alegre, RS</span>
+            <span class="testimonial-stars">&#11088;&#11088;&#11088;&#11088;&#11088;</span>
+          </div>
+          <p class="testimonial-text">"Eu ja tinha tentado de tudo para emagrecer, mas nada funcionava. Depois de incluir a formula do Truque da Gelatina na minha rotina, perdi 11kg sem mudar nada na minha alimentacao! O mais incrivel e que minha fome e ansiedade diminuiram naturalmente!"</p>
+        </div>
+      </div>
+
+      <button class="cta-btn cta-main" onclick="goTo(12)">Continuar</button>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 12 — PROVA CIENTIFICA ==================== -->
+  <div class="screen" id="screen-12">
+    <div class="screen-inner center-content">
+      <h1 class="break-headline">A ciencia comprova: <em>a gelatina funciona!</em></h1>
+
+      <div class="science-cards">
+        <div class="science-card mechanism-gas">
+          <span class="science-icon">&#128203;</span>
+          <h4>Universidade de Stanford (2024)</h4>
+          <p>Pesquisadores analisaram 8.000+ mulheres acima de 35 anos e descobriram que 95% estavam com os hormonios GLP-1 e GIP desregulados — a causa real do acumulo de gordura</p>
+        </div>
+        <div class="science-card mechanism-liquid">
+          <span class="science-icon">&#128202;</span>
+          <h4>Journal of Nutritional Biochemistry</h4>
+          <p>A combinacao de glicina e alanina (presentes na gelatina) com cinamaldeido (da canela) demonstrou capacidade de reativar a producao natural de GLP-1 e acelerar o metabolismo em ate 23%</p>
+        </div>
+        <div class="science-card" style="background:var(--success-bg);border:1px solid rgba(90,138,60,0.15);">
+          <span class="science-icon">&#9989;</span>
+          <h4>Mais de 47.000 mulheres</h4>
+          <p>Ja testaram o protocolo personalizado baseado nessa descoberta</p>
+        </div>
+      </div>
+
+      <button class="cta-btn cta-main" onclick="goTo(13)">Continuar</button>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 13 — PESO ATUAL (SLIDER) ==================== -->
+  <div class="screen" id="screen-13">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, qual e o seu<br><strong>peso atual?</strong></h1>
+      <p class="q-justification">Estamos quase la! Vamos ajustar seu plano de acordo com seu corpo.</p>
+
+      <div class="slider-wrap">
+        <div><span class="slider-value" id="weightDisplay">70</span> <span class="slider-unit">kg</span></div>
+        <input type="range" class="slider-input" id="weightSlider" min="40" max="250" value="70" step="1" oninput="updateWeight()">
+        <div class="slider-labels"><span>40 kg</span><span>250 kg</span></div>
+        <p class="slider-hint">Arraste para ajustar &#128070;</p>
+      </div>
+
+      <p class="q-justification">Baseado nisso, ajustaremos a dosagem ideal para os melhores resultados!</p>
+      <button class="cta-btn cta-main" onclick="submitWeight()">Continuar</button>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 14 — ALTURA (SLIDER) ==================== -->
+  <div class="screen" id="screen-14">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, qual e a<br><strong>sua altura?</strong></h1>
+      <p class="q-justification">Isso nos ajudara a calcular a quantidade exata do Truque da Gelatina para seu corpo.</p>
+
+      <div class="slider-wrap">
+        <div><span class="slider-value" id="heightDisplay">170</span> <span class="slider-unit">cm</span></div>
+        <input type="range" class="slider-input" id="heightSlider" min="100" max="220" value="170" step="1" oninput="updateHeight()">
+        <div class="slider-labels"><span>100 cm</span><span>220 cm</span></div>
+        <p class="slider-hint">Arraste para ajustar &#128070;</p>
+      </div>
+
+      <button class="cta-btn cta-main" onclick="submitHeight()">Continuar</button>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 15 — PESO OBJETIVO (SLIDER) ==================== -->
+  <div class="screen" id="screen-15">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, qual e o<br><strong>seu objetivo de peso?</strong></h1>
+      <p class="q-justification">Isso nos ajudara a personalizar um plano especificamente para voce.</p>
+
+      <div class="slider-wrap">
+        <div><span class="slider-value" id="goalDisplay">60</span> <span class="slider-unit">kg</span></div>
+        <input type="range" class="slider-input" id="goalSlider" min="35" max="249" value="60" step="1" oninput="updateGoal()">
+        <div class="slider-labels"><span>35 kg</span><span id="goalMaxLabel">249 kg</span></div>
+        <p class="slider-hint">Arraste para ajustar &#128070;</p>
+      </div>
+
+      <p class="input-error" id="goalError"></p>
+      <button class="cta-btn cta-main" onclick="submitGoal()">Continuar</button>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 16 — CORPO DOS SONHOS ==================== -->
+  <div class="screen" id="screen-16">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, qual o<br><strong>corpo dos seus sonhos?</strong></h1>
+      <p class="q-justification">Escolha a opcao abaixo:</p>
+
+      <div class="age-grid">
+        <button class="age-card" onclick="selectBody(this)">
+          <div class="body-emoji-wrap"><span class="body-emoji">🧘‍♀️</span></div>
+          <span class="age-label">Corpo Slim</span>
+        </button>
+        <button class="age-card" onclick="selectBody(this)">
+          <div class="body-emoji-wrap"><span class="body-emoji">💪</span></div>
+          <span class="age-label">Corpo Fitness</span>
+        </button>
+        <button class="age-card" onclick="selectBody(this)">
+          <div class="body-emoji-wrap"><span class="body-emoji">💃</span></div>
+          <span class="age-label">Com Curvas</span>
+        </button>
+        <button class="age-card" onclick="selectBody(this)">
+          <div class="body-emoji-wrap"><span class="body-emoji">⌛</span></div>
+          <span class="age-label">Corpo Violao</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 17 ==================== -->
+  <div class="screen" id="screen-17">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, como e o seu<br><strong>dia a dia?</strong></h1>
+      <p class="q-justification">Sua rotina diaria tambem faz diferenca!</p>
+      <div class="option-list">
+        <button class="option-row" onclick="selectOption(this,17)"><span class="option-text">&#129321; Trabalho fora e tenho uma rotina agitada</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,17)"><span class="option-text">&#129303; Trabalho em casa e tenho uma rotina flexivel</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,17)"><span class="option-text">&#129392; Fico em casa cuidando da familia</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,17)"><span class="option-text">&#128580; Outro</span><span class="option-check"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 18 ==================== -->
+  <div class="screen" id="screen-18">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, quantas<br><strong>horas de sono</strong> voce tem por noite?</h1>
+      <p class="q-justification">A qualidade do seu sono impacta diretamente no seu emagrecimento!</p>
+      <div class="option-list">
+        <button class="option-row" onclick="selectOption(this,18)"><span class="option-text">&#129402; Menos de 5 horas</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,18)"><span class="option-text">&#129300; Entre 5 e 7 horas</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,18)"><span class="option-text">&#129392; Entre 7 e 9 horas</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,18)"><span class="option-text">&#129395; Mais de 9 horas</span><span class="option-check"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 19 ==================== -->
+  <div class="screen" id="screen-19">
+    <div class="screen-inner center-content">
+      <h1 class="q-title"><span class="user-name"></span>, <strong>quantos copos de agua</strong> voce bebe por dia?</h1>
+      <p class="q-justification">Seu nivel de hidratacao tambem influencia na sua perda de peso.</p>
+      <div class="option-list">
+        <button class="option-row" onclick="selectOption(this,19)"><span class="option-text">&#9749; Bebo apenas cafe ou cha</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,19)"><span class="option-text">&#128688; 1-2 copos por dia</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,19)"><span class="option-text">&#128688; 2-6 copos por dia</span><span class="option-check"></span></button>
+        <button class="option-row" onclick="selectOption(this,19)"><span class="option-text">&#128688; Mais de 6 copos</span><span class="option-check"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 20 — LOADING ==================== -->
+  <div class="screen" id="screen-20">
+    <div class="screen-inner center-content loading-screen">
+      <h1 class="loading-title"><span class="user-name"></span>, estamos gerando sua<br>receita personalizada...</h1>
+      <p class="loading-sub">Estamos gerando seu protocolo personalizado do Truque da Gelatina Bariatrica!</p>
+
+      <div class="loading-steps" id="loadingSteps">
+        <div class="loading-step" data-step="0">
+          <div class="loading-step-header">
+            <span class="loading-step-text">Seu perfil</span>
+            <span class="loading-step-pct">0%</span>
+          </div>
+          <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+        </div>
+        <div class="loading-step" data-step="1">
+          <div class="loading-step-header">
+            <span class="loading-step-text">Atividade</span>
+            <span class="loading-step-pct">0%</span>
+          </div>
+          <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+        </div>
+        <div class="loading-step" data-step="2">
+          <div class="loading-step-header">
+            <span class="loading-step-text">Estilo de vida</span>
+            <span class="loading-step-pct">0%</span>
+          </div>
+          <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+        </div>
+        <div class="loading-step" data-step="3">
+          <div class="loading-step-header">
+            <span class="loading-step-text">Nutricao</span>
+            <span class="loading-step-pct">0%</span>
+          </div>
+          <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+        </div>
+        <div class="loading-step" data-step="4">
+          <div class="loading-step-header">
+            <span class="loading-step-text">Metas</span>
+            <span class="loading-step-pct">0%</span>
+          </div>
+          <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+        </div>
+      </div>
+
+      <div class="loading-badge" style="display:none;" id="loadingBadge">
+        <span class="loading-badge-icon">&#128274;</span>
+        Dados protegidos com criptografia
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TELA 21 — RESULTADO ==================== -->
+  <div class="screen" id="screen-21">
+    <div class="screen-inner center-content">
+      <h1 class="q-title">Veja como o <strong>Truque da Gelatina Bariatrica</strong> esta transformando vidas e veja os <strong>resultados da nossa comunidade!</strong></h1>
+      <p class="q-justification">Veja abaixo as taxas de IMC e o resultado da analise de seus dados &#128071;</p>
+
+      <!-- IMC Card -->
+      <div class="result-card">
+        <p class="result-card-title">Indice de Massa Corporal (IMC)</p>
+        <p class="imc-label">Seu IMC e</p>
+        <p class="imc-value" id="imcValue">--</p>
+        <p class="imc-label" id="imcClassification">--</p>
+        <div class="imc-bar-wrap">
+          <div class="imc-pointer" id="imcPointer" style="left:50%;"></div>
+        </div>
+        <div class="imc-bar-labels">
+          <span>Abaixo</span>
+          <span>Normal</span>
+          <span>Sobrepeso</span>
+          <span>Obesidade</span>
+        </div>
+      </div>
+
+      <!-- Diagnostico Card -->
+      <div class="diagnosis-card" id="diagnosisCard">
+        <p class="diagnosis-card-title">&#9888;&#65039; <span id="diagTitle">Seu metabolismo pode estar te sabotando!</span></p>
+        <p class="diagnosis-text" id="diagText"></p>
+      </div>
+
+      <!-- Sinais de Alerta -->
+      <div class="alert-card">
+        <p class="alert-card-title">&#9888;&#65039; Alguns sinais de alerta:</p>
+        <div class="alert-item"><span class="alert-x">&#10006;</span><span>Metabolismo lento e dificuldade para emagrecer mesmo comendo pouco.</span></div>
+        <div class="alert-item"><span class="alert-x">&#10006;</span><span>Cansaco constante e sensacao de inchaco.</span></div>
+        <div class="alert-item"><span class="alert-x">&#10006;</span><span>Acumulo de gordura em areas especificas do corpo, principalmente na barriga.</span></div>
+      </div>
+
+      <!-- Solucao -->
+      <div class="solution-card">
+        <p class="solution-card-title">&#9989; Com o Truque da Gelatina Bariatrica, seu corpo acelera a queima de gordura naturalmente!</p>
+        <p class="solution-text">A combinacao ideal de ingredientes pode ativar seu metabolismo, reduzir a retencao de liquidos e aumentar sua disposicao.</p>
+        <p class="solution-text" style="margin-top:12px;font-weight:700;">Descubra agora como o Truque da Gelatina Bariatrica pode transformar seu corpo!</p>
+      </div>
+
+      <!-- Depoimento final -->
+      <div class="depoimento-result">
+        <img src="assets/prova5.png" alt="Transformacao Silvia">
+        <div class="depoimento-result-body">
+          <span class="testimonial-name">Silvia, 43 anos — Belo Horizonte</span>
+          <span class="testimonial-stars" style="display:block;margin:4px 0;">&#11088;&#11088;&#11088;&#11088;&#11088;</span>
+          <p class="testimonial-text">"Em 3 semanas perdi 9kg seguindo a receita personalizada. Meu marido nao acreditou!"</p>
+        </div>
+      </div>
+
+      <!-- CTA FINAL -->
+      <a href="vsl.html" class="cta-btn cta-green" id="finalCta">&#128994; QUERO MINHA RECEITA PERSONALIZADA AGORA</a>
+      <p class="cta-secure">&#128274; Acesso imediato &middot; Satisfacao garantida &middot; Apenas R$67</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- MODAL CONFIRMACAO SLIDER -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <p class="modal-title" id="confirmModalTitle">Confirma?</p>
+    <div class="modal-btns">
+      <button class="modal-btn-confirm" id="confirmModalYes">Sim, confirmar</button>
+      <button class="modal-btn-cancel" id="confirmModalNo">Nao, vou ajustar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   QUIZ ENGINE — Truque da Gelatina Bariatrica
+   ===================================================== */
+
+// State
+var currentScreen = 0;
+var userData = {
+  nome: '',
+  peso_atual: 70,
+  altura: 170,
+  peso_objetivo: 60,
+  imc: 0,
+  classificacao_imc: '',
+  area_foco: '',
+  impacto_vida: '',
+  impedimento: '',
+  kg_perder: 0
+};
+var weightMoved = false;
+var heightMoved = false;
+var goalMoved = false;
+var loadingRunning = false;
+
+// Progress map
+var progressMap = {
+  1: 5, 2: 10, 3: 15, 4: 18, 5: 22, 6: 27, 7: 32, 8: 37,
+  9: 42, 10: 47, 11: 52, 12: 55, 13: 60, 14: 65, 15: 70,
+  16: 75, 17: 80, 18: 84, 19: 88, 20: 92, 21: 100
+};
+
+// Section map
+var sectionMap = {
+  1: 'Seu perfil', 2: 'Seu perfil', 3: 'Seu perfil', 4: 'Seu perfil', 5: 'Seu perfil',
+  6: 'Seu perfil', 7: 'Seu perfil', 8: 'Seu perfil',
+  9: 'Mecanismo', 10: 'Mecanismo', 11: 'Mecanismo', 12: 'Mecanismo',
+  13: 'Seus dados', 14: 'Seus dados', 15: 'Seus dados',
+  16: 'Estilo de vida', 17: 'Estilo de vida', 18: 'Estilo de vida', 19: 'Estilo de vida',
+  20: '', 21: ''
+};
+
+// Restore state
+function restoreState() {
+  try {
+    var saved = localStorage.getItem('quiz_gelatina_state');
+    if (saved) {
+      var s = JSON.parse(saved);
+      if (s.currentScreen) currentScreen = s.currentScreen;
+      if (s.userData) {
+        for (var k in s.userData) {
+          if (s.userData.hasOwnProperty(k)) userData[k] = s.userData[k];
+        }
+      }
+    }
+  } catch(e) {}
+}
+
+function saveState() {
+  try {
+    localStorage.setItem('quiz_gelatina_state', JSON.stringify({ currentScreen: currentScreen, userData: userData }));
+  } catch(e) {}
+}
+
+// Fill all name placeholders
+function fillNames() {
+  var name = userData.nome || '';
+  var els = document.querySelectorAll('.user-name');
+  for (var i = 0; i < els.length; i++) {
+    els[i].textContent = name;
+  }
+}
+
+// Navigation
+function goTo(n) {
+  // Hide current
+  if (currentScreen > 0) {
+    var cur = document.getElementById('screen-' + currentScreen);
+    if (cur) cur.classList.remove('active');
+  }
+
+  currentScreen = n;
+
+  // Show new
+  var next = document.getElementById('screen-' + currentScreen);
+  if (next) {
+    // Clear previous selections so user can re-select
+    var prevSelected = next.querySelectorAll('.is-selected');
+    for (var i = 0; i < prevSelected.length; i++) prevSelected[i].classList.remove('is-selected');
+    next.classList.add('active');
+  }
+
+  // Progress
+  document.getElementById('progressFill').style.width = (progressMap[n] || 0) + '%';
+
+  // Section
+  document.getElementById('headerSection').textContent = sectionMap[n] || '';
+
+  // Back button
+  document.getElementById('backBtn').hidden = (n === 1);
+
+  // Scroll top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Fill names
+  fillNames();
+
+  // Special screens
+  if (n === 4) startAutoCarousel();
+  if (n !== 4 && autoCarouselTimer) { clearInterval(autoCarouselTimer); autoCarouselTimer = null; }
+  if (n === 15) setupGoalSlider();
+  if (n === 20 && !loadingRunning) startLoading();
+  if (n === 21) showResult();
+
+  saveState();
+}
+
+function goBack() {
+  if (currentScreen <= 1) return;
+  // Don't go back from loading or result
+  if (currentScreen === 20 || currentScreen === 21) return;
+  goTo(currentScreen - 1);
+}
+
+// Option select (auto-advance)
+function selectOption(btn, screen, dataKey) {
+  var list = btn.closest('.option-list');
+  var rows = list.querySelectorAll('.option-row');
+  for (var i = 0; i < rows.length; i++) rows[i].classList.remove('is-selected');
+  btn.classList.add('is-selected');
+
+  if (dataKey) {
+    var txt = btn.querySelector('.option-text').textContent.trim();
+    userData[dataKey] = txt;
+  }
+
+  // Special: tela 8 transition
+  if (screen === 8) {
+    var trans = document.getElementById('t8transition');
+    trans.style.display = 'block';
+    setTimeout(function() { goTo(screen + 1); }, 2000);
+    return;
+  }
+
+  setTimeout(function() { goTo(screen + 1); }, 280);
+}
+
+// Multi-select (tela 10)
+function toggleMulti(btn) {
+  btn.classList.toggle('multi-selected');
+  var any = document.querySelector('#multiSelectList .multi-selected');
+  document.getElementById('multiContinueBtn').disabled = !any;
+}
+
+// Body select (tela 16)
+function selectBody(btn) {
+  setTimeout(function() { goTo(17); }, 280);
+}
+
+// Name submit
+function submitName() {
+  var input = document.getElementById('nameInput');
+  var name = input.value.trim();
+  var errEl = document.getElementById('nameError');
+
+  if (name.length < 2) {
+    errEl.textContent = 'Digite seu nome pra continuar';
+    return;
+  }
+  if (/^\d+$/.test(name)) {
+    errEl.textContent = 'Digite seu nome pra continuar';
+    return;
+  }
+  if (/^\s+$/.test(name)) {
+    errEl.textContent = 'Digite seu nome pra continuar';
+    return;
+  }
+
+  errEl.textContent = '';
+  userData.nome = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  goTo(6);
+}
+
+// Sliders
+function updateWeight() {
+  var v = document.getElementById('weightSlider').value;
+  document.getElementById('weightDisplay').textContent = v;
+  weightMoved = true;
+}
+
+function updateHeight() {
+  var v = document.getElementById('heightSlider').value;
+  document.getElementById('heightDisplay').textContent = v;
+  heightMoved = true;
+}
+
+function updateGoal() {
+  var v = document.getElementById('goalSlider').value;
+  document.getElementById('goalDisplay').textContent = v;
+  document.getElementById('goalError').textContent = '';
+  goalMoved = true;
+}
+
+function setupGoalSlider() {
+  var maxGoal = userData.peso_atual - 1;
+  var defaultGoal = Math.max(35, userData.peso_atual - 10);
+  var slider = document.getElementById('goalSlider');
+  slider.max = maxGoal;
+  slider.value = defaultGoal;
+  document.getElementById('goalDisplay').textContent = defaultGoal;
+  document.getElementById('goalMaxLabel').textContent = maxGoal + ' kg';
+  goalMoved = false;
+}
+
+// Confirmation modal
+function showConfirmModal(title, onConfirm, onCancel) {
+  var modal = document.getElementById('confirmModal');
+  document.getElementById('confirmModalTitle').textContent = title;
+  modal.classList.add('show');
+
+  var yesBtn = document.getElementById('confirmModalYes');
+  var noBtn = document.getElementById('confirmModalNo');
+
+  // Remove old listeners by cloning
+  var newYes = yesBtn.cloneNode(true);
+  var newNo = noBtn.cloneNode(true);
+  yesBtn.parentNode.replaceChild(newYes, yesBtn);
+  noBtn.parentNode.replaceChild(newNo, noBtn);
+
+  newYes.addEventListener('click', function() {
+    modal.classList.remove('show');
+    onConfirm();
+  });
+
+  newNo.addEventListener('click', function() {
+    modal.classList.remove('show');
+    if (onCancel) onCancel();
+  });
+}
+
+function submitWeight() {
+  var v = parseInt(document.getElementById('weightSlider').value);
+
+  if (!weightMoved) {
+    showConfirmModal(
+      'Confirma que seu peso e ' + v + 'kg?',
+      function() { userData.peso_atual = v; goTo(14); },
+      function() { /* stay */ }
+    );
+    return;
+  }
+
+  userData.peso_atual = v;
+  goTo(14);
+}
+
+function submitHeight() {
+  var v = parseInt(document.getElementById('heightSlider').value);
+
+  if (!heightMoved) {
+    showConfirmModal(
+      'Confirma que sua altura e ' + v + 'cm?',
+      function() { userData.altura = v; goTo(15); },
+      function() { /* stay */ }
+    );
+    return;
+  }
+
+  userData.altura = v;
+  goTo(15);
+}
+
+function submitGoal() {
+  var v = parseInt(document.getElementById('goalSlider').value);
+  var errEl = document.getElementById('goalError');
+
+  if (v >= userData.peso_atual) {
+    errEl.textContent = 'Seu objetivo precisa ser menor que seu peso atual';
+    return;
+  }
+  if (v < 35) {
+    errEl.textContent = 'Digite um peso objetivo saudavel';
+    return;
+  }
+
+  if (!goalMoved) {
+    showConfirmModal(
+      'Confirma que seu objetivo e ' + v + 'kg?',
+      function() { userData.peso_objetivo = v; goTo(16); },
+      function() { /* stay */ }
+    );
+    return;
+  }
+
+  errEl.textContent = '';
+  userData.peso_objetivo = v;
+  goTo(16);
+}
+
+// Carousel
+var carouselIdx = 0;
+function moveCarousel(dir) {
+  var slides = document.querySelectorAll('#proofTrack .carousel-slide');
+  carouselIdx = Math.max(0, Math.min(slides.length - 1, carouselIdx + dir));
+  document.getElementById('proofTrack').style.transform = 'translateX(-' + (carouselIdx * 100) + '%)';
+  updateDots();
+}
+function goToSlide(i) {
+  carouselIdx = i;
+  document.getElementById('proofTrack').style.transform = 'translateX(-' + (carouselIdx * 100) + '%)';
+  updateDots();
+}
+function updateDots() {
+  var dots = document.querySelectorAll('#carouselDots .carousel-dot');
+  for (var i = 0; i < dots.length; i++) {
+    if (i === carouselIdx) dots[i].classList.add('active');
+    else dots[i].classList.remove('active');
+  }
+}
+
+// Auto-scroll carousel every 3 seconds
+var autoCarouselTimer = null;
+function startAutoCarousel() {
+  if (autoCarouselTimer) clearInterval(autoCarouselTimer);
+  autoCarouselTimer = setInterval(function() {
+    var slides = document.querySelectorAll('#proofTrack .carousel-slide');
+    carouselIdx = (carouselIdx + 1) % slides.length;
+    document.getElementById('proofTrack').style.transform = 'translateX(-' + (carouselIdx * 100) + '%)';
+    updateDots();
+  }, 3000);
+}
+
+// Loading animation
+function startLoading() {
+  loadingRunning = true;
+  var steps = document.querySelectorAll('#loadingSteps .loading-step');
+  var badge = document.getElementById('loadingBadge');
+  var stepDuration = 1600;
+
+  function animateStep(idx) {
+    if (idx >= steps.length) {
+      badge.style.display = 'inline-flex';
+      // Auto-advance to result
+      setTimeout(function() { goTo(21); }, 800);
+      return;
+    }
+
+    var step = steps[idx];
+    var pctEl = step.querySelector('.loading-step-pct');
+    var fillEl = step.querySelector('.loading-bar-fill');
+    var pct = 0;
+    var interval = stepDuration / 100;
+
+    var timer = setInterval(function() {
+      pct++;
+      pctEl.textContent = pct + '%';
+      fillEl.style.width = pct + '%';
+
+      if (pct >= 100) {
+        clearInterval(timer);
+        step.classList.add('done');
+        setTimeout(function() { animateStep(idx + 1); }, 200);
+      }
+    }, interval);
+  }
+
+  // Reset all
+  for (var i = 0; i < steps.length; i++) {
+    steps[i].classList.remove('done');
+    steps[i].querySelector('.loading-step-pct').textContent = '0%';
+    steps[i].querySelector('.loading-bar-fill').style.width = '0%';
+  }
+  badge.style.display = 'none';
+
+  animateStep(0);
+}
+
+// Result
+function showResult() {
+  // Calculate IMC
+  var heightM = userData.altura / 100;
+  var imc = userData.peso_atual / (heightM * heightM);
+  userData.imc = Math.round(imc * 100) / 100;
+
+  // Classification
+  var classif = '';
+  if (imc < 18.5) classif = 'Abaixo do peso';
+  else if (imc < 25) classif = 'Normal';
+  else if (imc < 30) classif = 'Sobrepeso';
+  else classif = 'Obesidade';
+  userData.classificacao_imc = classif;
+  userData.kg_perder = userData.peso_atual - userData.peso_objetivo;
+
+  // Display IMC
+  document.getElementById('imcValue').textContent = userData.imc.toFixed(2);
+  document.getElementById('imcClassification').textContent = classif;
+
+  // Position pointer (IMC range ~15 to ~45 mapped to 0-100%)
+  var pct = ((imc - 15) / (45 - 15)) * 100;
+  pct = Math.max(2, Math.min(98, pct));
+  document.getElementById('imcPointer').style.left = pct + '%';
+
+  // Diagnosis text
+  var nome = userData.nome;
+  var diagTitle = document.getElementById('diagTitle');
+  var diagText = document.getElementById('diagText');
+
+  if (imc >= 25) {
+    diagTitle.textContent = 'Seu metabolismo pode estar te sabotando sem que voce perceba!';
+    diagText.textContent = nome + ', com seu IMC de ' + userData.imc.toFixed(2) + ', seu corpo pode estar retendo toxinas e trabalhando de forma mais lenta, dificultando a queima de gordura e deixando voce com menos energia.';
+  } else {
+    diagTitle.textContent = 'Mesmo estando no peso normal, seu corpo pode estar te sabotando!';
+    diagText.textContent = nome + ', mesmo estando no peso normal, seu corpo pode estar retendo toxinas e trabalhando de forma mais lenta, dificultando a queima de gordura e deixando voce com menos energia.';
+  }
+
+  saveState();
+}
+
+// ========== PRESSEL DELAY + START QUIZ ==========
+// Delay: 9 minutos e 5 segundos = 545 segundos
+var PRESSEL_DELAY_MS = 545 * 1000;
+
+function startQuiz() {
+  document.getElementById('presselScreen').style.display = 'none';
+  document.getElementById('quizHeader').style.display = '';
+  document.getElementById('quizMain').style.display = '';
+  goTo(1);
+}
+
+// Show pressel CTA after delay
+setTimeout(function() {
+  var btn = document.getElementById('presselCta');
+  if (btn) btn.classList.add('visible');
+}, PRESSEL_DELAY_MS);
+
+// Load pressel video script
+(function() {
+  var s = document.createElement("script");
+  s.src = "https://scripts.converteai.net/6deab618-46ba-49a5-9e08-96b6dc8d25d5/players/69e25e1e5a6a1b255846a405/v4/player.js";
+  s.async = true;
+  document.head.appendChild(s);
+})();
+
+// Enter key for name input
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('nameInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') submitName();
+  });
+
+  // Init
+  restoreState();
+
+  // If restored to a screen > 1 with a valid name, show it
+  if (currentScreen > 5 && userData.nome) {
+    // Don't restore loading/result — go to last question before loading
+    if (currentScreen >= 20) {
+      currentScreen = 19;
+    }
+    goTo(currentScreen);
+  } else if (currentScreen > 1 && currentScreen <= 5) {
+    goTo(currentScreen);
+  } else {
+    currentScreen = 0;
+    goTo(1);
+  }
+});
+</script>
+
+</body>
+</html>
