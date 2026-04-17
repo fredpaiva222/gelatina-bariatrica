@@ -530,13 +530,16 @@ input { font-family: inherit; }
 .carousel-slide {
   min-width: 100%;
   flex-shrink: 0;
+  aspect-ratio: 1/1;
   overflow: hidden;
+  border-radius: var(--r-lg);
 }
 .carousel-slide img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
-  border-radius: var(--r-lg);
 }
 .carousel-btn {
   position: absolute;
@@ -573,6 +576,11 @@ input { font-family: inherit; }
   transition: background 0.2s var(--ease);
 }
 .carousel-dot.active { background: var(--primary); }
+
+@keyframes carouselScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-300%); }
+}
 
 /* ---------- slider input ---------- */
 .slider-wrap {
@@ -1943,16 +1951,28 @@ function updateDots() {
   }
 }
 
-// Auto-scroll carousel every 3 seconds
+// Auto-scroll carousel — continuous smooth scroll
 var autoCarouselTimer = null;
 function startAutoCarousel() {
   if (autoCarouselTimer) clearInterval(autoCarouselTimer);
-  autoCarouselTimer = setInterval(function() {
-    var slides = document.querySelectorAll('#proofTrack .carousel-slide');
-    carouselIdx = (carouselIdx + 1) % slides.length;
-    document.getElementById('proofTrack').style.transform = 'translateX(-' + (carouselIdx * 100) + '%)';
-    updateDots();
-  }, 3000);
+  var track = document.getElementById('proofTrack');
+  var slides = document.querySelectorAll('#proofTrack .carousel-slide');
+  if (!track || slides.length <= 1) return;
+
+  // Clone all slides for seamless infinite loop
+  for (var i = 0; i < slides.length; i++) {
+    track.appendChild(slides[i].cloneNode(true));
+  }
+
+  // Remove snap transition, use CSS animation
+  track.style.transition = 'none';
+  track.style.transform = 'none';
+  track.style.animation = 'carouselScroll ' + (slides.length * 4) + 's linear infinite';
+
+  // Hide manual buttons and dots
+  var btns = document.querySelectorAll('#proofCarousel .carousel-btn');
+  for (var j = 0; j < btns.length; j++) btns[j].style.display = 'none';
+  document.getElementById('carouselDots').style.display = 'none';
 }
 
 // Loading animation
