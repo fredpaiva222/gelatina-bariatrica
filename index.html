@@ -1121,14 +1121,14 @@ input { font-family: inherit; }
 <body>
 
 <!-- HEADER -->
-<header class="app-header" id="quizHeader" style="display:none;">
+<header class="app-header" id="quizHeader">
   <div class="header-inner">
     <button class="back-btn" id="backBtn" hidden onclick="goBack()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
     </button>
     <div class="brand">
       <div class="brand-avatar-wrap">
-        <img src="assets/Roberto Fonseca.png" alt="Dr. Roberto Fonseca" class="brand-avatar">
+        <img src="assets/perfil.jpg" alt="Dr. Roberto Fonseca" class="brand-avatar">
       </div>
     </div>
     <div class="header-section" id="headerSection">Seu perfil</div>
@@ -1147,6 +1147,7 @@ input { font-family: inherit; }
     <div style="width:100%;max-width:400px;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 20px rgba(59,42,36,0.15);">
       <img src="assets/juliana.jpg" alt="Resultado real" style="width:100%;display:block;">
     </div>
+    <p style="font-size:12px;color:var(--subtext);text-align:center;line-height:1.5;margin-top:4px;">Responda um pequeno formulario e receba a receita personalizada</p>
     <button class="pressel-cta visible" id="presselCta" onclick="startQuiz()">QUERO MINHA RECEITA PERSONALIZADA &#10140;</button>
     <p class="pressel-disclaimer">Teste gratuito &middot; Resultado imediato &middot; Sem cadastro</p>
   </div>
@@ -2124,7 +2125,6 @@ function showResult() {
 // ========== PRESSEL — START QUIZ ==========
 function startQuiz() {
   document.getElementById('presselScreen').style.display = 'none';
-  document.getElementById('quizHeader').style.display = '';
   document.getElementById('quizMain').style.display = '';
   goTo(1);
 }
