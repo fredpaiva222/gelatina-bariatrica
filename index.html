@@ -1143,11 +1143,11 @@ input { font-family: inherit; }
 <!-- ==================== PRESSEL ==================== -->
 <div class="pressel-screen active" id="presselScreen">
   <div class="pressel-inner">
-    <h1 class="pressel-headline">Descubra o <strong>truque da gelatina bariatrica</strong> que esta fazendo mulheres perderem ate 15kg em 4 semanas</h1>
-    <div class="pressel-video-wrap">
-      <vturb-smartplayer id="vid-69e25e1e5a6a1b255846a405" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
+    <h1 class="pressel-headline">Descubra o <strong>truque da gelatina bariatrica</strong> que esta fazendo mulheres perderem ate 9kg em 4 semanas</h1>
+    <div style="width:100%;max-width:400px;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 20px rgba(59,42,36,0.15);">
+      <img src="assets/juliana.jpg" alt="Resultado real" style="width:100%;display:block;">
     </div>
-    <button class="pressel-cta" id="presselCta" onclick="startQuiz()">QUERO MINHA RECEITA PERSONALIZADA &#10140;</button>
+    <button class="pressel-cta visible" id="presselCta" onclick="startQuiz()">QUERO MINHA RECEITA PERSONALIZADA &#10140;</button>
     <p class="pressel-disclaimer">Teste gratuito &middot; Resultado imediato &middot; Sem cadastro</p>
   </div>
 </div>
@@ -1613,8 +1613,18 @@ input { font-family: inherit; }
         </div>
       </div>
 
+      <!-- O que voce vai receber -->
+      <div style="width:100%;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 20px rgba(59,42,36,0.1);margin-top:8px;">
+        <img src="assets/vai receber.png" alt="O que voce vai receber" style="width:100%;display:block;">
+      </div>
+
+      <!-- Card da oferta -->
+      <div style="width:100%;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 20px rgba(59,42,36,0.1);margin-top:8px;">
+        <img src="assets/card oferta.png" alt="Oferta especial" style="width:100%;display:block;">
+      </div>
+
       <!-- CTA FINAL -->
-      <a href="vsl.html" class="cta-btn cta-green" id="finalCta">&#128994; QUERO MINHA RECEITA PERSONALIZADA AGORA</a>
+      <a href="https://lastlink.com/p/C6F6C0C75/checkout-payment/" class="cta-btn cta-green" id="finalCta" style="margin-top:16px;">&#128994; QUERO MINHA RECEITA PERSONALIZADA AGORA</a>
       <p class="cta-secure">&#128274; Acesso imediato &middot; Satisfacao garantida &middot; Apenas R$67</p>
     </div>
   </div>
@@ -2061,30 +2071,13 @@ function showResult() {
   saveState();
 }
 
-// ========== PRESSEL DELAY + START QUIZ ==========
-// Delay: 9 minutos e 5 segundos = 545 segundos
-var PRESSEL_DELAY_MS = 545 * 1000;
-
+// ========== PRESSEL — START QUIZ ==========
 function startQuiz() {
   document.getElementById('presselScreen').style.display = 'none';
   document.getElementById('quizHeader').style.display = '';
   document.getElementById('quizMain').style.display = '';
   goTo(1);
 }
-
-// Show pressel CTA after delay
-setTimeout(function() {
-  var btn = document.getElementById('presselCta');
-  if (btn) btn.classList.add('visible');
-}, PRESSEL_DELAY_MS);
-
-// Load pressel video script
-(function() {
-  var s = document.createElement("script");
-  s.src = "https://scripts.converteai.net/6deab618-46ba-49a5-9e08-96b6dc8d25d5/players/69e25e1e5a6a1b255846a405/v4/player.js";
-  s.async = true;
-  document.head.appendChild(s);
-})();
 
 // Enter key for name input
 document.addEventListener('DOMContentLoaded', function() {
