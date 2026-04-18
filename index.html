@@ -114,23 +114,12 @@ input { font-family: inherit; }
   align-items: center;
   justify-content: center;
 }
-.brand-avatar-wrap {
-  width: 78px;
-  height: 78px;
-  border-radius: 50%;
-  padding: 3px;
-  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .brand-avatar {
   width: 72px;
   height: 72px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  border: 3px solid var(--bg);
 }
 .header-section {
   grid-column: 3;
@@ -1127,9 +1116,7 @@ input { font-family: inherit; }
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
     </button>
     <div class="brand">
-      <div class="brand-avatar-wrap">
-        <img src="assets/perfil.jpg" alt="Dr. Roberto Fonseca" class="brand-avatar">
-      </div>
+      <img src="assets/perfil.jpg" alt="Perfil" class="brand-avatar">
     </div>
     <div class="header-section" id="headerSection">Seu perfil</div>
   </div>
@@ -2149,7 +2136,13 @@ document.addEventListener('DOMContentLoaded', function() {
     goTo(currentScreen);
   } else {
     currentScreen = 0;
-    goTo(1);
+    // Don't advance if pressel is visible — wait for user click
+    var pressel = document.getElementById('presselScreen');
+    if (pressel && pressel.style.display !== 'none' && pressel.classList.contains('active')) {
+      document.getElementById('progressFill').style.width = '0%';
+    } else {
+      goTo(1);
+    }
   }
 });
 </script>
