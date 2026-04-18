@@ -1559,11 +1559,16 @@ input { font-family: inherit; }
     </div>
   </div>
 
-  <!-- ==================== TELA 21 — RESULTADO ==================== -->
+  <!-- ==================== TELA 21 — RESULTADO + PÁGINA DE VENDAS ==================== -->
   <div class="screen" id="screen-21">
     <div class="screen-inner center-content">
-      <h1 class="q-title">Veja como o <strong>Truque da Gelatina Bariatrica</strong> esta transformando vidas e veja os <strong>resultados da nossa comunidade!</strong></h1>
-      <p class="q-justification">Veja abaixo as taxas de IMC e o resultado da analise de seus dados &#128071;</p>
+
+      <!-- ===== SEÇÃO 1: SEU DIAGNÓSTICO ===== -->
+      <div style="width:100%;text-align:center;margin-bottom:8px;">
+        <span style="display:inline-block;padding:6px 16px;background:var(--success-bg);color:var(--success);font-size:12px;font-weight:700;border-radius:var(--r-pill);text-transform:uppercase;letter-spacing:0.05em;">&#9989; Analise concluida</span>
+      </div>
+      <h1 class="q-title"><span class="user-name"></span>, seu diagnostico esta pronto.</h1>
+      <p class="q-justification">Analisamos suas respostas e calculamos seu plano personalizado &#128071;</p>
 
       <!-- IMC Card -->
       <div class="result-card">
@@ -1590,20 +1595,30 @@ input { font-family: inherit; }
 
       <!-- Sinais de Alerta -->
       <div class="alert-card">
-        <p class="alert-card-title">&#9888;&#65039; Alguns sinais de alerta:</p>
-        <div class="alert-item"><span class="alert-x">&#10006;</span><span>Metabolismo lento e dificuldade para emagrecer mesmo comendo pouco.</span></div>
-        <div class="alert-item"><span class="alert-x">&#10006;</span><span>Cansaco constante e sensacao de inchaco.</span></div>
-        <div class="alert-item"><span class="alert-x">&#10006;</span><span>Acumulo de gordura em areas especificas do corpo, principalmente na barriga.</span></div>
+        <p class="alert-card-title">&#9888;&#65039; Sinais identificados no seu perfil:</p>
+        <div class="alert-item"><span class="alert-x">&#10006;</span><span>Metabolismo lento — dificuldade para emagrecer mesmo comendo pouco</span></div>
+        <div class="alert-item"><span class="alert-x">&#10006;</span><span>Inflamacao cronica — sensacao de inchaco e barriga estufada</span></div>
+        <div class="alert-item"><span class="alert-x">&#10006;</span><span>Hormonios GLP-1 e GIP desregulados — gordura acumula mesmo com esforco</span></div>
       </div>
 
       <!-- Solucao -->
       <div class="solution-card">
-        <p class="solution-card-title">&#9989; Com o Truque da Gelatina Bariatrica, seu corpo acelera a queima de gordura naturalmente!</p>
-        <p class="solution-text">A combinacao ideal de ingredientes pode ativar seu metabolismo, reduzir a retencao de liquidos e aumentar sua disposicao.</p>
-        <p class="solution-text" style="margin-top:12px;font-weight:700;">Descubra agora como o Truque da Gelatina Bariatrica pode transformar seu corpo!</p>
+        <p class="solution-card-title">&#9989; A boa noticia: seu corpo PODE ser reprogramado.</p>
+        <p class="solution-text">A gelatina bariatrica contem glicina e alanina — aminoacidos que reativam seus hormonios de queima de gordura (GLP-1 e GIP) de forma natural. <strong>E a receita e personalizada pro seu peso e altura.</strong></p>
       </div>
 
-      <!-- Depoimento final -->
+      <!-- CTA INTERMEDIÁRIO -->
+      <a href="https://lastlink.com/p/C6F6C0C75/checkout-payment/" class="cta-btn cta-green" style="margin-top:4px;">QUERO MINHA RECEITA PERSONALIZADA — R$67</a>
+
+      <!-- ===== SEÇÃO 2: PROVA SOCIAL ===== -->
+      <div style="width:100%;height:1px;background:var(--line);margin:28px 0 20px;"></div>
+
+      <div style="width:100%;text-align:center;">
+        <span style="display:inline-block;padding:6px 16px;background:rgba(201,169,97,0.12);color:#8B7340;font-size:12px;font-weight:700;border-radius:var(--r-pill);text-transform:uppercase;letter-spacing:0.05em;">&#11088; Resultados reais</span>
+      </div>
+      <h2 style="font-size:20px;font-weight:700;color:var(--text);text-align:center;margin-top:12px;">Veja quem ja transformou o corpo com a gelatina bariatrica</h2>
+
+      <!-- Depoimento Silvia -->
       <div class="depoimento-result">
         <img src="assets/prova5.png" alt="Transformacao Silvia">
         <div class="depoimento-result-body">
@@ -1613,19 +1628,59 @@ input { font-family: inherit; }
         </div>
       </div>
 
-      <!-- O que voce vai receber -->
-      <div style="width:100%;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 20px rgba(59,42,36,0.1);margin-top:8px;">
+      <!-- ===== SEÇÃO 3: O QUE VOCÊ VAI RECEBER ===== -->
+      <div style="width:100%;height:1px;background:var(--line);margin:28px 0 20px;"></div>
+
+      <div style="width:100%;text-align:center;">
+        <span style="display:inline-block;padding:6px 16px;background:rgba(59,42,36,0.06);color:var(--primary);font-size:12px;font-weight:700;border-radius:var(--r-pill);text-transform:uppercase;letter-spacing:0.05em;">&#127873; Seu pacote completo</span>
+      </div>
+      <h2 style="font-size:22px;font-weight:800;color:var(--text);text-align:center;margin-top:12px;line-height:1.3;"><span class="user-name"></span>, veja tudo o que voce vai receber:</h2>
+      <p class="q-justification" style="margin-bottom:16px;">Seu protocolo personalizado + todos os bonus inclusos</p>
+
+      <!-- Imagem vai receber -->
+      <div style="width:100%;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 24px rgba(59,42,36,0.12);">
         <img src="assets/vai receber.png" alt="O que voce vai receber" style="width:100%;display:block;">
       </div>
 
+      <!-- CTA INTERMEDIÁRIO 2 -->
+      <a href="https://lastlink.com/p/C6F6C0C75/checkout-payment/" class="cta-btn cta-green" style="margin-top:20px;">SIM! QUERO TUDO ISSO AGORA — R$67</a>
+      <p style="font-size:11px;color:var(--subtext);text-align:center;margin-top:8px;">&#128274; Pagamento 100% seguro &middot; Acesso imediato</p>
+
+      <!-- ===== SEÇÃO 4: OFERTA FINAL ===== -->
+      <div style="width:100%;height:1px;background:var(--line);margin:28px 0 20px;"></div>
+
+      <div style="width:100%;text-align:center;">
+        <span style="display:inline-block;padding:6px 16px;background:#FFF0F0;color:var(--red);font-size:12px;font-weight:700;border-radius:var(--r-pill);text-transform:uppercase;letter-spacing:0.05em;">&#128293; Oferta por tempo limitado</span>
+      </div>
+
       <!-- Card da oferta -->
-      <div style="width:100%;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 20px rgba(59,42,36,0.1);margin-top:8px;">
+      <div style="width:100%;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 6px 30px rgba(59,42,36,0.15);margin-top:16px;">
         <img src="assets/card oferta.png" alt="Oferta especial" style="width:100%;display:block;">
       </div>
 
+      <!-- GARANTIA -->
+      <div style="width:100%;background:var(--white);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:20px;margin-top:16px;text-align:center;">
+        <p style="font-size:28px;margin-bottom:8px;">&#128737;&#65039;</p>
+        <p style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Garantia blindada de 30 dias</p>
+        <p style="font-size:13px;color:var(--subtext);line-height:1.5;">Se voce nao gostar do protocolo, se nao ver resultado, ou se simplesmente mudar de ideia — devolvemos cada centavo. Sem perguntas. Sem burocracia. O risco e TODO nosso.</p>
+      </div>
+
       <!-- CTA FINAL -->
-      <a href="https://lastlink.com/p/C6F6C0C75/checkout-payment/" class="cta-btn cta-green" id="finalCta" style="margin-top:16px;">&#128994; QUERO MINHA RECEITA PERSONALIZADA AGORA</a>
+      <a href="https://lastlink.com/p/C6F6C0C75/checkout-payment/" class="cta-btn cta-green" id="finalCta" style="margin-top:20px;font-size:16px;padding:18px 24px;">&#128994; QUERO MINHA RECEITA PERSONALIZADA AGORA</a>
       <p class="cta-secure">&#128274; Acesso imediato &middot; Satisfacao garantida &middot; Apenas R$67</p>
+
+      <!-- Trust badges -->
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:16px;">
+        <span style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--subtext);">&#128274; SSL Seguro</span>
+        <span style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--subtext);">&#9989; Garantia 30 dias</span>
+        <span style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--subtext);">&#128179; Pix ou Cartao</span>
+      </div>
+
+      <!-- Rodapé -->
+      <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--line);text-align:center;">
+        <p style="font-size:11px;color:var(--subtext);line-height:1.5;">+20.000 mulheres ja testaram o protocolo &middot; Resultados podem variar<br>Metodo Receitinha &middot; Todos os direitos reservados</p>
+      </div>
+
     </div>
   </div>
 
